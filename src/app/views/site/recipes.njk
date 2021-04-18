@@ -1,0 +1,48 @@
+{% extends "site/layouts.njk" %}
+
+{% block links %}
+    <a class="about-link" href="/about">Sobre</a>
+    <a class="recipe-link open" href="/recipes">Receitas</a>
+    <a class="chefs-link" href="/chefs">Chefs</a>
+{% endblock %}
+
+{% block filter %}
+
+    <form action="/recipes" method="GET">
+        <input type="text" name="filter" placeholder="Buscar uma receita" value="{{filter}}">
+        <button type="submit">Buscar</button>
+    </form>
+
+{% endblock %}
+
+{% block content %}
+
+    <main>
+        {% if filter %}
+        <h1 id="searching-filter">Buscando por "{{filter}}"</h1>
+        {% endif %}
+
+        <section class="introduction-recipes extended">
+
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <img class="recipe-img" id="{{recipe.id}}" src="{{recipe.image}}" alt="{{recipe.title}}">
+                <p class="recipe-name">{{recipe.title}}</p>
+                <p class="creator-name">Por {{recipe.chef_name}}</p>
+            </div>
+            {% endfor %}
+
+             {% for recipe in recipes %}
+            <div class="recipe-card">
+                <img class="recipe-img" id="{{recipe.id}}" src="{{recipe.image}}" alt="{{recipe.title}}">
+                <p class="recipe-name">{{recipe.title}}</p>
+                <p class="creator-name">Por {{recipe.chef_name}}</p>
+            </div>
+            {% endfor %}
+            
+        </section>
+    </main>
+
+     
+
+    {% endblock %}

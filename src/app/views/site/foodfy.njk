@@ -1,0 +1,42 @@
+{% extends "site/layouts.njk" %}
+
+{% block filter %}
+
+    <form action="/recipes" method="GET">
+        <input type="text" name="filter" placeholder="Buscar uma receita" value="{{filter}}">
+        <button type="submit">Buscar</button>
+    </form>
+
+{% endblock %}
+
+{% block content %}
+    <main>
+        <section class="introduction-card">
+            <div id="introduction-text">
+                <h1>As melhores receitas</h1>
+                <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
+            </div>
+            <div id="introduction-img">
+                <img src="/chef.png" alt="chef">
+            </div>
+        </section>
+
+        <h1 id="most-accessed">Mais acessadas</h1>
+
+        <section class="introduction-recipes">
+
+            {% for recipe in recipes %}
+            <div class="recipe-card">
+                <img class="recipe-img" id="{{recipe.id}}" src="{{recipe.image}}" alt="{{recipe.title}}">
+                <p class="recipe-name">{{recipe.title}}</p>
+                <p class="creator-name">Por {{recipe.chef_name}}</p>
+            </div>
+            {% endfor %}
+            
+        </section>
+        
+    </main>
+
+    
+
+{% endblock %}
